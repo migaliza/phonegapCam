@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<link rel="stylesheet" href="css/themes/mytheme.css"/>
+		<link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css"/>
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<script src="js/jquery.mobile-1.4.5.min.js"></script>
+		<script src="phonegap.js"></script>
+		<script>
+			function scanBarcode(){
+				cordova.plugins.barcodeScanner.scan(
+					function (result) {
+					$("#details").text("We got a barcode\n" +
+						"Result: " + result.text + "\n" +
+						"Format: " + result.format + "\n" +
+						"Cancelled: " + result.cancelled),
+					
+					function (error) {
+						alert("Scanning failed: " + error);
+					}
+				);
+   
+				
+			}			
+		</script>
+
+	</head>
+	<body>
+	<!-- the header-->
+		<div data-role="page"id="pageone" >
+            <div data-role="header" >
+				<h1> BarcodeScanner<h1>
+			</div>
+		
+		<!--content with the barcode-->
+		<div role="main"class="ui-content" data-theme="e">
+			
+			<input type="button" value ="SCAN" id="btnScan" onclick="scanBarcode()">
+				<div id="details"></div>
+				
+		</div>
+		
+		<!--footer-->
+		<div data-role="footer"data-theme="a">
+                <p id="message"></p>
+         </div>
+			
+		</div>	
+	</body>
+	
+</html>

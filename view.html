@@ -1,0 +1,63 @@
+<!DOCTYPEhtml>
+<html>
+    <head>
+		<link rel="stylesheet" href="css/themes/mytheme.css"/>
+		<link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css"/>
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<script src="js/jquery.mobile-1.4.5.min.js"></script>
+		<script>
+		jQuery(function($){
+			
+			var theUrl = "request.php?cmd=2";
+
+			var obj=sendRequest(theUrl);
+			alert(obj);
+			if(obj.result==1){
+			$("#listValue").text(obj.result);
+			}
+		})
+		
+		function sendRequest(u){
+				var obj=$.ajax({url:u,async:false});
+				var result=$.parseJSON(obj.responseText);
+				
+				return result;
+			}
+
+		</script>
+    </head>
+    <body>
+        <!--header-->
+        <div data-role="page" id="pageone">
+            <div data-role="header">
+                <div data-role="navbar" data-theme="a">
+                    <ul>
+                        <li> <a href="index.html" data-icon="home" data-transition="fade" class="ui-btn-active ui-state-persit">Home</a></li>
+                        <li><a href="view.html" data-icon="arrow-r" data-transition="slide"class="ui-btn-active ui-state-persit">View</a></li>
+                        </li>
+                    </ul>
+                </div>
+                <!--data to be entered-->
+                
+            </div>
+            
+            <!--content-->
+            <div role="main"class="ui-content">
+                <div data-role="collapsible">
+					<h1>Values in JQueryDatabase<h1>
+					<ul id="listValue">
+					</ul>
+				</div>
+
+            </div>
+            
+            <!--footer-->
+            <div data-role="footer" data-position="inline">
+                <h1>Footer</h1>
+                <!--put footer content here-->
+            </div>
+        </div>
+
+    </body>
+</html>
